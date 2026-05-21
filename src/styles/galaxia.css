@@ -1,0 +1,294 @@
+/* ====================== GALAXIA 3D - ESTILOS COMPLETOS ====================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: #000;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: white;
+}
+
+/* ====================== PANTALLA INICIAL ====================== */
+
+.center-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #1a0033 0%, #000 70%);
+  z-index: 100;
+  text-align: center;
+}
+
+.pre-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.4em;
+  color: #c8a2ff;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.main-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #e0b3ff, #ffffff, #b388ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 40px rgba(180, 120, 255, 0.6);
+}
+
+.divider {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #a855f7, transparent);
+  margin: 1.2rem 0;
+}
+
+.subtitle {
+  font-size: 1.35rem;
+  color: #d1c4ff;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.explore-btn {
+  padding: 1rem 2.8rem;
+  font-size: 1.1rem;
+  background: rgba(120, 50, 220, 0.2);
+  color: white;
+  border: 2px solid #c084fc;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.explore-btn:hover {
+  background: rgba(180, 80, 255, 0.4);
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(192, 132, 252, 0.6);
+}
+
+/* ====================== CANVAS CONTAINER ====================== */
+
+.canvas-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* ====================== UI OVERLAY ====================== */
+
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Contador */
+.counter {
+  position: absolute;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 10, 45, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 0.7rem 2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(180, 130, 255, 0.3);
+  font-size: 1.15rem;
+  font-weight: 500;
+  pointer-events: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Botón Modo Relax */
+.auto-btn {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  padding: 0.75rem 1.6rem;
+  background: rgba(30, 15, 60, 0.7);
+  border: 1px solid rgba(180, 130, 255, 0.4);
+  color: #e0d4ff;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.auto-btn:hover {
+  background: rgba(140, 70, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.auto-btn.active {
+  background: rgba(255, 180, 50, 0.25);
+  border-color: #ffd700;
+  color: #ffe68a;
+}
+
+/* Pause Indicator */
+.pause-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 0 30px rgba(180, 140, 255, 0.8);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 20;
+}
+
+/* Completion Badge */
+.completion-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 10, 50, 0.85);
+  border: 2px solid #ffd700;
+  color: #ffd700;
+  padding: 1.2rem 3rem;
+  border-radius: 50px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(255, 215, 0, 0.5);
+  animation: glowPulse 3s infinite alternate;
+  pointer-events: auto;
+  z-index: 30;
+}
+
+@keyframes glowPulse {
+  from { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+  to   { box-shadow: 0 0 70px rgba(255, 215, 0, 0.8); }
+}
+
+/* ====================== MODAL ====================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.modal-box {
+  background: rgba(20, 10, 45, 0.95);
+  border: 1px solid rgba(180, 130, 255, 0.5);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  pointer-events: auto;
+}
+
+.modal-emoji {
+  font-size: 4.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  color: #e0c4ff;
+}
+
+.modal-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d1c4ff;
+  margin-bottom: 2rem;
+}
+
+.modal-btn {
+  padding: 0.8rem 2.5rem;
+  background: #6b46c1;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-btn:hover {
+  background: #8b5cf6;
+  transform: scale(1.05);
+}
+
+/* ====================== TOAST ====================== */
+
+.toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, #6b46c1, #a855f7);
+  color: white;
+  padding: 1rem 1.8rem;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(120, 60, 255, 0.4);
+  font-size: 1rem;
+  z-index: 2000;
+  animation: toastInOut 3s forwards;
+}
+
+@keyframes toastInOut {
+  0%   { transform: translateX(120%); opacity: 0; }
+  10%  { transform: translateX(0); opacity: 1; }
+  80%  { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+/* Mejoras para el canvas 3D */
+.canvas-container {
+  background: radial-gradient(ellipse at bottom, #1a0033 0%, #000000 100%);
+}
+
+/* Asegurar que el modal se vea sobre el canvas */
+.modal-overlay {
+  background: rgba(0, 0, 5, 0.9);
+}
+
+/* Animación suave para el badge de completado */
+.completion-badge {
+  animation: glowPulse 2s ease-in-out infinite alternate, float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-10px); }
+}
